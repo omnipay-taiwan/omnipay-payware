@@ -4,14 +4,11 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
-use Omnipay\Payware\Traits\HasDomain;
 use Omnipay\Payware\Traits\HasMerchant;
 
 class PurchaseRequest extends AbstractRequest
 {
-    use HasDomain;
     use HasMerchant;
-    use \Omnipay\Payware\Traits\HasPayType;
 
     /**
      * @param string $orderNo

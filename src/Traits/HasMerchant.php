@@ -7,6 +7,23 @@ use Omnipay\Payware\Message\PurchaseRequest;
 trait HasMerchant
 {
     /**
+     * @param $domain
+     * @return $this
+     */
+    public function setDomain($domain)
+    {
+        return $this->setParameter('domain', $domain);
+    }
+
+    /**
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->getParameter('domain');
+    }
+
+    /**
      * @param string $merchantId
      * @return $this
      */
@@ -72,5 +89,24 @@ trait HasMerchant
     public function getValidateKey()
     {
         return $this->getParameter('ValidateKey');
+    }
+
+    /**
+     * 1：信用卡、2：虛擬帳號、3：超商條碼、4：7-11Ibon(代碼)、5：ATM、6：FamiPort(代碼)。
+     *
+     * @param string $payType
+     * @return PurchaseRequest
+     */
+    public function setPayType($payType)
+    {
+        return $this->setParameter('PayType', $payType);
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayType()
+    {
+        return $this->getParameter('PayType');
     }
 }

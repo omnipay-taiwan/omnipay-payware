@@ -4,10 +4,11 @@ namespace Omnipay\Payware;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
-use Omnipay\Payware\Traits\HasDomain;
+use Omnipay\Payware\Message\ReceiveTransactionRequest;
 use Omnipay\Payware\Traits\HasMerchant;
 
 /**
@@ -67,7 +68,7 @@ use Omnipay\Payware\Traits\HasMerchant;
  *     echo "Transaction reference = " . $sale_id . "\n";
  * }
  * </code>
- * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = array())
+ * @method NotificationInterface acceptNotification(array $options = array())
  * @method RequestInterface authorize(array $options = array())
  * @method RequestInterface completeAuthorize(array $options = array())
  * @method RequestInterface capture(array $options = array())
@@ -81,7 +82,6 @@ use Omnipay\Payware\Traits\HasMerchant;
 class Gateway extends AbstractGateway
 {
     use HasMerchant;
-    use HasDomain;
 
     /**
      * @return string
@@ -122,5 +122,10 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest(CompletePurchaseRequest::class, $parameters);
+    }
+
+    public function receiveTransaction(array $parameters = [])
+    {
+        return $this->createRequest(ReceiveTransactionRequest::class, $parameters);
     }
 }

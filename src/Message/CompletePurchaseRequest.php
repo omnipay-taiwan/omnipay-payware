@@ -4,15 +4,13 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
-use Omnipay\Payware\Traits\HasDomain;
+use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
-use Omnipay\Payware\Traits\HasPayType;
 
 class CompletePurchaseRequest extends AbstractRequest
 {
-    use HasDomain;
     use HasMerchant;
-    use HasPayType;
+    use HasBooking;
 
     /**
      * @param int $authAmount
@@ -29,40 +27,6 @@ class CompletePurchaseRequest extends AbstractRequest
     public function getAuthAmount()
     {
         return $this->getParameter('AuthAmount');
-    }
-
-    /**
-     * @param string $bookingId
-     * @return CompletePurchaseRequest
-     */
-    public function setBookingId($bookingId)
-    {
-        return $this->setTransactionReference($bookingId);
-    }
-
-    /**
-     * @return string
-     */
-    public function getBookingId()
-    {
-        return $this->getTransactionReference();
-    }
-
-    /**
-     * @param string $custOrderNo
-     * @return CompletePurchaseRequest
-     */
-    public function setCustOrderNo($custOrderNo)
-    {
-        return $this->setTransactionId($custOrderNo);
-    }
-
-    /**
-     * @return string
-     */
-    public function getCustOrderNo()
-    {
-        return $this->getTransactionId();
     }
 
     /**
@@ -131,23 +95,6 @@ class CompletePurchaseRequest extends AbstractRequest
     public function getCheckMacValue()
     {
         return $this->getParameter('CheckMacValue');
-    }
-
-    /**
-     * @param string $sendType
-     * @return CompletePurchaseRequest
-     */
-    public function setSendType($sendType)
-    {
-        return $this->setParameter('SendType', $sendType);
-    }
-
-    /**
-     * @return string
-     */
-    public function getSendType()
-    {
-        return $this->getParameter('SendType');
     }
 
     public function getData()
