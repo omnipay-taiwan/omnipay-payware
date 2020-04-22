@@ -97,7 +97,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'Domain' => '',
+            'domain' => '',
             'MerchantId' => '',
             'TerminalId' => '',
             'MerchantName' => '',
@@ -108,7 +108,7 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $parameters
-     * @return AbstractRequest|RequestInterface
+     * @return RequestInterface
      */
     public function purchase(array $parameters = [])
     {
@@ -117,13 +117,17 @@ class Gateway extends AbstractGateway
 
     /**
      * @param array $parameters
-     * @return AbstractRequest|RequestInterface
+     * @return RequestInterface
      */
     public function completePurchase(array $parameters = [])
     {
         return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 
+    /**
+     * @param array $parameters
+     * @return RequestInterface
+     */
     public function receiveTransaction(array $parameters = [])
     {
         return $this->createRequest(ReceiveTransactionRequest::class, $parameters);

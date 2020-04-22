@@ -2,7 +2,9 @@
 
 namespace Omnipay\Payware\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
@@ -46,7 +48,6 @@ class ReceiveTransactionRequest extends AbstractRequest
         return $this->getParameter('AtmNo');
     }
 
-
     /**
      * @param string $paymentNo
      * @return ReceiveTransactionRequest
@@ -81,6 +82,10 @@ class ReceiveTransactionRequest extends AbstractRequest
         return $this->getParameter('PayEndDate');
     }
 
+    /**
+     * @return array
+     * @throws InvalidRequestException
+     */
     public function getData()
     {
         return array_filter([
@@ -100,6 +105,10 @@ class ReceiveTransactionRequest extends AbstractRequest
         });
     }
 
+    /**
+     * @param mixed $data
+     * @return ResponseInterface
+     */
     public function sendData($data)
     {
         return $this->response = new ReceiveTransactionResponse($this, $data);

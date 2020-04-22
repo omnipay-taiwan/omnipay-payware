@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Omnipay\Payware\Support;
-
 
 class Helper
 {
@@ -13,13 +11,12 @@ class Helper
      */
     public static function parseDate($date, $format = null)
     {
-        if (!$date) {
+        if (! $date) {
             return $date;
         }
 
-        return !$format
+        return ! $format
             ? str_replace('/', '-', $date)
             : date($format, strtotime($date));
     }
-
 }

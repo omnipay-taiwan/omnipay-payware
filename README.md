@@ -1,32 +1,32 @@
-# Omnipay: Dummy
+# Omnipay: Payware
 
-**Dummy driver for the Omnipay PHP payment processing library**
+**Payware driver for the Omnipay PHP payment processing library**
 
 [![Build Status](https://travis-ci.org/thephpleague/omnipay-dummy.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-dummy)
 [![Latest Stable Version](https://poser.pugx.org/omnipay/dummy/version.png)](https://packagist.org/packages/omnipay/dummy)
 [![Total Downloads](https://poser.pugx.org/omnipay/dummy/d/total.png)](https://packagist.org/packages/omnipay/dummy)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements Dummy support for Omnipay.
+processing library for PHP 5.3+. This package implements Payware support for Omnipay.
 
 ## Installation
 
-Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay/dummy` with Composer:
+Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply require `league/omnipay` and `omnipay-taiwan/payware` with Composer:
 
 ```
-composer require league/omnipay omnipay/dummy
+composer require league/omnipay omnipay-taiwan/payware
 ```
 
 ## Basic Usage
 
 The following gateways are provided by this package:
 
-* Dummy
+-   Payware
 
-This is a dummy gateway driver intended for testing purposes. If you provide a card number ending in an even number, the driver will return a success response. If it ends in an odd number, the driver will return a generic failure response. For example:
+This is a payware gateway driver intended for testing purposes. If you provide a card number ending in an even number, the driver will return a success response. If it ends in an odd number, the driver will return a generic failure response. For example:
 
-* 4929000000006 - Success
-* 4444333322221111 - Failure
+-   4929000000006 - Success
+-   4444333322221111 - Failure
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.

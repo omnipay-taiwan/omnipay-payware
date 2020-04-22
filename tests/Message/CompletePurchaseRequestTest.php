@@ -29,7 +29,7 @@ class CompletePurchaseRequestTest extends TestCase
         ]));
 
         $this->assertEquals(array_merge($parameters, [
-            'PaymentDate' => '2019-08-08'
+            'PaymentDate' => '2019-08-08',
         ]), $request->getData());
 
         return [$request->send()];

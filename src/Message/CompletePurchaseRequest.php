@@ -123,7 +123,7 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        if ($this->makeHash($data) !== $this->getCheckMacValue()) {
+        if (! hash_equals($this->getCheckMacValue(), $this->makeHash($data))) {
             throw new InvalidRequestException();
         }
 
@@ -138,7 +138,7 @@ class CompletePurchaseRequest extends AbstractRequest
     {
         $keys = ['MerchantId', 'TerminalId', 'PayType', 'BookingId', 'CustOrderNo', 'Amount', 'RtnCode'];
         $values = array_reduce($keys, function ($acc, $key) use ($data) {
-            return $acc . $data[$key];
+            return $acc.$data[$key];
         }, '');
 
         return hash_hmac('sha1', $values, $this->getValidateKey());
