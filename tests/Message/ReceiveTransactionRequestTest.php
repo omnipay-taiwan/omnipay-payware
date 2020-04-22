@@ -35,7 +35,9 @@ class ReceiveTransactionRequestTest extends TestCase
         $request = new ReceiveTransactionRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize($parameters);
 
-        $this->assertEquals($parameters, $request->getData());
+        $this->assertEquals(array_merge($parameters, [
+            'PayEndDate' => '2020-02-13 23:59:59',
+        ]), $request->getData());
 
         return [$request->send(), $parameters];
     }

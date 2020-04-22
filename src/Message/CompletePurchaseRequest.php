@@ -4,6 +4,7 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
 
@@ -109,7 +110,7 @@ class CompletePurchaseRequest extends AbstractRequest
             'CustOrderNo' => $this->getTransactionId(),
             'RtnCode' => $this->getRtnCode(),
             'RtnMsg' => $this->getRtnMsg(),
-            'PaymentDate' => $this->getPaymentDate(),
+            'PaymentDate' => Helper::parseDate($this->getPaymentDate()),
             'CheckMacValue' => $this->getCheckMacValue(),
             'SendType' => $this->getSendType(),
         ];
@@ -137,7 +138,7 @@ class CompletePurchaseRequest extends AbstractRequest
     {
         $keys = ['MerchantId', 'TerminalId', 'PayType', 'BookingId', 'CustOrderNo', 'Amount', 'RtnCode'];
         $values = array_reduce($keys, function ($acc, $key) use ($data) {
-            return $acc.$data[$key];
+            return $acc . $data[$key];
         }, '');
 
         return hash_hmac('sha1', $values, $this->getValidateKey());

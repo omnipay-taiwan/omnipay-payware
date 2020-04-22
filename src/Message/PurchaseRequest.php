@@ -4,6 +4,7 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasMerchant;
 
 class PurchaseRequest extends AbstractRequest
@@ -230,8 +231,8 @@ class PurchaseRequest extends AbstractRequest
             'Email' => $this->getEmail(),
             'Address' => $this->getAddress(),
             'MemberId' => $this->getMemberId(),
-            'DeadlineDate' => $this->getDeadlineDate(),
-            'DeadlineTime' => $this->getDeadlineTime(),
+            'DeadlineDate' => Helper::parseDate($this->getDeadlineDate(), 'Y/m/d'),
+            'DeadlineTime' => Helper::parseDate($this->getDeadlineTime(), 'H:i:s'),
         ];
     }
 

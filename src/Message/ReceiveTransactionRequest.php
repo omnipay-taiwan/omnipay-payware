@@ -3,6 +3,7 @@
 namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
 
@@ -93,7 +94,7 @@ class ReceiveTransactionRequest extends AbstractRequest
             'BankCode' => $this->getBankCode(),
             'AtmNo' => $this->getAtmNo(),
             'PaymentNo' => $this->getPaymentNo(),
-            'PayEndDate' => $this->getPayEndDate(),
+            'PayEndDate' => Helper::parseDate($this->getPayEndDate()),
         ], function ($value) {
             return !empty($value);
         });

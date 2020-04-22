@@ -28,7 +28,9 @@ class CompletePurchaseRequestTest extends TestCase
             'ValidateKey' => 'validateKey',
         ]));
 
-        $this->assertEquals($parameters, $request->getData());
+        $this->assertEquals(array_merge($parameters, [
+            'PaymentDate' => '2019-08-08'
+        ]), $request->getData());
 
         return [$request->send()];
     }
