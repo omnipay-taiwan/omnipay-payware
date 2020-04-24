@@ -34,10 +34,16 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function getRedirectUrl()
     {
-        $domain = $this->getRequest()->getDomain();
-        $testMode = $this->getRequest()->getTestMode();
+        $endpoint = $this->getRequest()->getEndpoint();
+        $endpoint = (bool) preg_match('/^http(s)?:\/\//', $endpoint)
+            ? $endpoint
+            : 'https://' . $endpoint;
+        $endpoint = $this->getRequest()->getTestMode()
+            ? str_replace('www.', 'test.', $endpoint)
+            : $endpoint;
 
-        return sprintf('https://%s.%s/authpay', $testMode ? 'test' : 'www', $domain);
+
+        return sprintf('%s/authpay', rtrim($endpoint, '/'));
     }
 
     /**

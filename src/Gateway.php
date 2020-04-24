@@ -97,7 +97,7 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'domain' => '',
+            'endpoint' => '',
             'MerchantId' => '',
             'TerminalId' => '',
             'MerchantName' => '',

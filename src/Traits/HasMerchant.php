@@ -7,20 +7,20 @@ use Omnipay\Payware\Message\PurchaseRequest;
 trait HasMerchant
 {
     /**
-     * @param $domain
+     * @param $endpoint
      * @return $this
      */
-    public function setDomain($domain)
+    public function setEndpoint($endpoint)
     {
-        return $this->setParameter('domain', $domain);
+        return $this->setParameter('endpoint', $endpoint);
     }
 
     /**
      * @return string
      */
-    public function getDomain()
+    public function getEndpoint()
     {
-        return $this->getParameter('domain');
+        return $this->getParameter('endpoint');
     }
 
     /**

@@ -31,7 +31,7 @@ class PurchaseRequestTest extends TestCase
         ];
         $request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize(array_merge($parameters, [
-            'Domain' => 'awsgamer.net',
+            'endpoint' => 'www.awsgamer.net',
         ]));
 
         $this->assertEquals($parameters, $request->getData());

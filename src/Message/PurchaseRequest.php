@@ -212,7 +212,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('domain', 'MerchantId', 'TerminalId', 'amount', 'transactionId');
+        $this->validate('endpoint', 'MerchantId', 'TerminalId', 'amount', 'transactionId');
 
         return [
             'MerchantId' => $this->getMerchantId(),
