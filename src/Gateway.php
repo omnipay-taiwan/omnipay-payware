@@ -3,12 +3,11 @@
 namespace Omnipay\Payware;
 
 use Omnipay\Common\AbstractGateway;
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Message\RequestInterface;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
-use Omnipay\Payware\Message\ReceiveTransactionRequest;
+use Omnipay\Payware\Message\ReceiveRequest;
 use Omnipay\Payware\Traits\HasMerchant;
 
 /**
@@ -128,8 +127,8 @@ class Gateway extends AbstractGateway
      * @param array $parameters
      * @return RequestInterface
      */
-    public function receiveTransaction(array $parameters = [])
+    public function receive(array $parameters = [])
     {
-        return $this->createRequest(ReceiveTransactionRequest::class, $parameters);
+        return $this->createRequest(ReceiveRequest::class, $parameters);
     }
 }

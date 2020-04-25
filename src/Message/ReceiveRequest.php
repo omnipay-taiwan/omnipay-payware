@@ -9,14 +9,14 @@ use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
 
-class ReceiveTransactionRequest extends AbstractRequest
+class ReceiveRequest extends AbstractRequest
 {
     use HasMerchant;
     use HasBooking;
 
     /**
      * @param string $bankCode
-     * @return ReceiveTransactionRequest
+     * @return ReceiveRequest
      */
     public function setBankCode($bankCode)
     {
@@ -33,7 +33,7 @@ class ReceiveTransactionRequest extends AbstractRequest
 
     /**
      * @param string $atmNo
-     * @return ReceiveTransactionRequest
+     * @return ReceiveRequest
      */
     public function setAtmNo($atmNo)
     {
@@ -50,7 +50,7 @@ class ReceiveTransactionRequest extends AbstractRequest
 
     /**
      * @param string $paymentNo
-     * @return ReceiveTransactionRequest
+     * @return ReceiveRequest
      */
     public function setPaymentNo($paymentNo)
     {
@@ -67,7 +67,7 @@ class ReceiveTransactionRequest extends AbstractRequest
 
     /**
      * @param string $payEndDate
-     * @return ReceiveTransactionRequest
+     * @return ReceiveRequest
      */
     public function setPayEndDate($payEndDate)
     {
@@ -101,7 +101,7 @@ class ReceiveTransactionRequest extends AbstractRequest
             'PaymentNo' => $this->getPaymentNo(),
             'PayEndDate' => Helper::parseDate($this->getPayEndDate()),
         ], function ($value) {
-            return !empty($value);
+            return ! empty($value);
         });
     }
 
@@ -111,6 +111,6 @@ class ReceiveTransactionRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        return $this->response = new ReceiveTransactionResponse($this, $data);
+        return $this->response = new ReceiveResponse($this, $data);
     }
 }

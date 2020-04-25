@@ -5,7 +5,7 @@ namespace Omnipay\Payware\Tests;
 use Omnipay\Payware\Gateway;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
-use Omnipay\Payware\Message\ReceiveTransactionRequest;
+use Omnipay\Payware\Message\ReceiveRequest;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
@@ -38,8 +38,8 @@ class GatewayTest extends GatewayTestCase
     public function testReceiveTransaction()
     {
         $options = [];
-        $request = $this->gateway->receiveTransaction($options);
+        $request = $this->gateway->receive($options);
 
-        $this->assertInstanceOf(ReceiveTransactionRequest::class, $request);
+        $this->assertInstanceOf(ReceiveRequest::class, $request);
     }
 }
