@@ -8,6 +8,24 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
+     * The embodied request object.
+     *
+     * @var PurchaseRequest
+     */
+    protected $request;
+
+    /**
+     * Constructor.
+     *
+     * @param PurchaseRequest $request the initiating request.
+     * @param mixed $data
+     */
+    public function __construct(PurchaseRequest $request, $data)
+    {
+        parent::__construct($request, $data);
+    }
+
+    /**
      * Is the response successful?
      *
      * @return bool
@@ -34,10 +52,10 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function getRedirectUrl()
     {
-        $endpoint = $this->getRequest()->getEndpoint();
+        $endpoint = $this->request->getEndpoint();
         $endpoint = (bool) preg_match('/^http(s)?:\/\//', $endpoint)
             ? $endpoint
-            : 'https://'.$endpoint;
+            : 'https://' . $endpoint;
         $endpoint = $this->getRequest()->getTestMode()
             ? str_replace('www.', 'test.', $endpoint)
             : $endpoint;
