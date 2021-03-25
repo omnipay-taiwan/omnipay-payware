@@ -22,8 +22,8 @@ class GatewayTest extends GatewayTestCase
         $options = ['OrderNo' => 'abc', 'amount' => '10.00'];
         $request = $this->gateway->purchase($options);
 
-        $this->assertInstanceOf(PurchaseRequest::class, $request);
-        $this->assertArrayHasKey('Amount', $request->getData());
+        self::assertInstanceOf(PurchaseRequest::class, $request);
+        self::assertArrayHasKey('Amount', $request->getData());
     }
 
     public function testCompletePurchase()
@@ -31,8 +31,8 @@ class GatewayTest extends GatewayTestCase
         $options = ['transactionReference' => 'abc123'];
         $request = $this->gateway->completePurchase($options);
 
-        $this->assertInstanceOf(CompletePurchaseRequest::class, $request);
-        $this->assertArrayHasKey('BookingId', $request->getData());
+        self::assertInstanceOf(CompletePurchaseRequest::class, $request);
+        self::assertArrayHasKey('BookingId', $request->getData());
     }
 
     public function testReceiveTransaction()
@@ -40,6 +40,6 @@ class GatewayTest extends GatewayTestCase
         $options = [];
         $request = $this->gateway->receive($options);
 
-        $this->assertInstanceOf(ReceiveRequest::class, $request);
+        self::assertInstanceOf(ReceiveRequest::class, $request);
     }
 }

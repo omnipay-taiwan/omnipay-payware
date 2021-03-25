@@ -28,7 +28,7 @@ class CompletePurchaseRequestTest extends TestCase
             'ValidateKey' => 'validateKey',
         ]));
 
-        $this->assertEquals(array_merge($parameters, [
+        self::assertEquals(array_merge($parameters, [
             'PaymentDate' => '2019-08-08',
         ]), $request->getData());
 
@@ -43,10 +43,10 @@ class CompletePurchaseRequestTest extends TestCase
     {
         list($response) = $parameters;
 
-        $this->assertTrue($response->isSuccessful());
-        $this->assertEquals('000', $response->getCode());
-        $this->assertEquals('授權成功。', $response->getMessage());
-        $this->assertEquals('6636797108956306177', $response->getTransactionId());
-        $this->assertEquals('PW118120600018', $response->getTransactionReference());
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals('000', $response->getCode());
+        self::assertEquals('授權成功。', $response->getMessage());
+        self::assertEquals('6636797108956306177', $response->getTransactionId());
+        self::assertEquals('PW118120600018', $response->getTransactionReference());
     }
 }

@@ -35,7 +35,7 @@ class ReceiveRequestTest extends TestCase
         $request = new ReceiveRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize($parameters);
 
-        $this->assertEquals(array_merge($parameters, [
+        self::assertEquals(array_merge($parameters, [
             'PayEndDate' => '2020-02-13 23:59:59',
         ]), $request->getData());
 
@@ -50,8 +50,8 @@ class ReceiveRequestTest extends TestCase
     {
         list($response, $parameters) = $results;
 
-        $this->assertTrue($response->isSuccessful());
-        $this->assertEquals($parameters['AtmNo'], $response->getData()['AtmNo']);
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals($parameters['AtmNo'], $response->getData()['AtmNo']);
     }
 
     public function testPaymentNoGetData()
@@ -70,7 +70,7 @@ class ReceiveRequestTest extends TestCase
         $request = new ReceiveRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize($parameters);
 
-        $this->assertEquals($parameters, $request->getData());
+        self::assertEquals($parameters, $request->getData());
 
         return [$request->send(), $parameters];
     }
@@ -83,7 +83,7 @@ class ReceiveRequestTest extends TestCase
     {
         list($response, $parameters) = $results;
 
-        $this->assertTrue($response->isSuccessful());
-        $this->assertEquals($parameters['PaymentNo'], $response->getData()['PaymentNo']);
+        self::assertTrue($response->isSuccessful());
+        self::assertEquals($parameters['PaymentNo'], $response->getData()['PaymentNo']);
     }
 }

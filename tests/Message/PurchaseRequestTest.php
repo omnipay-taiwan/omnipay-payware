@@ -34,7 +34,7 @@ class PurchaseRequestTest extends TestCase
             'endpoint' => 'www.awsgamer.net',
         ]));
 
-        $this->assertEquals($parameters, $request->getData());
+        self::assertEquals($parameters, $request->getData());
 
         return [$request->send(), $parameters];
     }
@@ -47,10 +47,10 @@ class PurchaseRequestTest extends TestCase
     {
         list($response, $parameters) = $results;
 
-        $this->assertFalse($response->isSuccessful());
-        $this->assertTrue($response->isRedirect());
-        $this->assertEquals('POST', $response->getRedirectMethod());
-        $this->assertEquals('https://www.awsgamer.net/authpay', $response->getRedirectUrl());
-        $this->assertEquals($parameters, $response->getRedirectData());
+        self::assertFalse($response->isSuccessful());
+        self::assertTrue($response->isRedirect());
+        self::assertEquals('POST', $response->getRedirectMethod());
+        self::assertEquals('https://www.awsgamer.net/authpay', $response->getRedirectUrl());
+        self::assertEquals($parameters, $response->getRedirectData());
     }
 }
