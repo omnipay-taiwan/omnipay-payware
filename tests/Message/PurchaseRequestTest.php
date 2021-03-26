@@ -9,7 +9,7 @@ class PurchaseRequestTest extends TestCase
 {
     public function testGetData()
     {
-        $parameters = [
+        $options = [
             'MerchantId' => 1,
             'TerminalId' => 101,
             'MerchantName' => '',
@@ -30,13 +30,13 @@ class PurchaseRequestTest extends TestCase
             'DeadlineTime' => '',
         ];
         $request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($parameters, [
+        $request->initialize(array_merge($options, [
             'endpoint' => 'www.awsgamer.net',
         ]));
 
-        self::assertEquals($parameters, $request->getData());
+        self::assertEquals($options, $request->getData());
 
-        return [$request->send(), $parameters];
+        return [$request->send(), $options];
     }
 
     /**
@@ -45,12 +45,12 @@ class PurchaseRequestTest extends TestCase
      */
     public function testSend($results)
     {
-        list($response, $parameters) = $results;
+        list($response, $options) = $results;
 
         self::assertFalse($response->isSuccessful());
         self::assertTrue($response->isRedirect());
         self::assertEquals('POST', $response->getRedirectMethod());
         self::assertEquals('https://www.awsgamer.net/authpay', $response->getRedirectUrl());
-        self::assertEquals($parameters, $response->getRedirectData());
+        self::assertEquals($options, $response->getRedirectData());
     }
 }

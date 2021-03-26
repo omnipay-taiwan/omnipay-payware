@@ -9,7 +9,7 @@ class CompletePurchaseRequestTest extends TestCase
 {
     public function testGetData()
     {
-        $parameters = [
+        $options = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -24,11 +24,11 @@ class CompletePurchaseRequestTest extends TestCase
             'SendType' => '1',
         ];
         $request = new CompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($parameters, [
+        $request->initialize(array_merge($options, [
             'ValidateKey' => 'validateKey',
         ]));
 
-        self::assertEquals(array_merge($parameters, [
+        self::assertEquals(array_merge($options, [
             'PaymentDate' => '2019-08-08',
         ]), $request->getData());
 
@@ -37,11 +37,11 @@ class CompletePurchaseRequestTest extends TestCase
 
     /**
      * @depends testGetData
-     * @param array $parameters
+     * @param array $options
      */
-    public function testSend($parameters)
+    public function testSend($options)
     {
-        list($response) = $parameters;
+        list($response) = $options;
 
         self::assertTrue($response->isSuccessful());
         self::assertEquals('000', $response->getCode());

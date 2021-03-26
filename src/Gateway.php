@@ -67,16 +67,16 @@ use Omnipay\Payware\Traits\HasMerchant;
  *     echo "Transaction reference = " . $sale_id . "\n";
  * }
  * </code>
- * @method NotificationInterface acceptNotification(array $options = array())
- * @method RequestInterface authorize(array $options = array())
- * @method RequestInterface completeAuthorize(array $options = array())
- * @method RequestInterface capture(array $options = array())
- * @method RequestInterface refund(array $options = array())
+ * @method NotificationInterface acceptNotification(array $options = [])
+ * @method RequestInterface authorize(array $options = [])
+ * @method RequestInterface completeAuthorize(array $options = [])
+ * @method RequestInterface capture(array $options = [])
+ * @method RequestInterface refund(array $options = [])
  * @method RequestInterface fetchTransaction(array $options = [])
- * @method RequestInterface void(array $options = array())
- * @method RequestInterface createCard(array $options = array())
- * @method RequestInterface updateCard(array $options = array())
- * @method RequestInterface deleteCard(array $options = array())
+ * @method RequestInterface void(array $options = [])
+ * @method RequestInterface createCard(array $options = [])
+ * @method RequestInterface updateCard(array $options = [])
+ * @method RequestInterface deleteCard(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
@@ -106,29 +106,29 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * @param array $parameters
+     * @param array $options
      * @return RequestInterface
      */
-    public function purchase(array $parameters = [])
+    public function purchase(array $options = [])
     {
-        return $this->createRequest(PurchaseRequest::class, $parameters);
+        return $this->createRequest(PurchaseRequest::class, $options);
     }
 
     /**
-     * @param array $parameters
+     * @param array $options
      * @return RequestInterface
      */
-    public function completePurchase(array $parameters = [])
+    public function completePurchase(array $options = [])
     {
-        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
+        return $this->createRequest(CompletePurchaseRequest::class, $options);
     }
 
     /**
-     * @param array $parameters
+     * @param array $options
      * @return RequestInterface
      */
-    public function receive(array $parameters = [])
+    public function receive(array $options = [])
     {
-        return $this->createRequest(ReceiveRequest::class, $parameters);
+        return $this->createRequest(ReceiveRequest::class, $options);
     }
 }

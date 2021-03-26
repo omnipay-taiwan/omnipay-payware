@@ -20,7 +20,7 @@ class ReceiveRequestTest extends TestCase
          * 'PayEndDate' => '2020-04-23',
          * 'SendType' => '1',.
          */
-        $parameters = [
+        $options = [
             'MerchantId' => 'test001',
             'TerminalId' => 'test001001',
             'PayType' => '2',
@@ -33,13 +33,13 @@ class ReceiveRequestTest extends TestCase
             'PayEndDate' => '2020/02/13 23:59:59',
         ];
         $request = new ReceiveRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize($parameters);
+        $request->initialize($options);
 
-        self::assertEquals(array_merge($parameters, [
+        self::assertEquals(array_merge($options, [
             'PayEndDate' => '2020-02-13 23:59:59',
         ]), $request->getData());
 
-        return [$request->send(), $parameters];
+        return [$request->send(), $options];
     }
 
     /**
@@ -48,15 +48,15 @@ class ReceiveRequestTest extends TestCase
      */
     public function testAtmSend($results)
     {
-        list($response, $parameters) = $results;
+        list($response, $options) = $results;
 
         self::assertTrue($response->isSuccessful());
-        self::assertEquals($parameters['AtmNo'], $response->getData()['AtmNo']);
+        self::assertEquals($options['AtmNo'], $response->getData()['AtmNo']);
     }
 
     public function testPaymentNoGetData()
     {
-        $parameters = [
+        $options = [
             'MerchantId' => 'test001',
             'TerminalId' => 'test001001',
             'PayType' => '4',
@@ -68,11 +68,11 @@ class ReceiveRequestTest extends TestCase
             'SendType' => '1',
         ];
         $request = new ReceiveRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize($parameters);
+        $request->initialize($options);
 
-        self::assertEquals($parameters, $request->getData());
+        self::assertEquals($options, $request->getData());
 
-        return [$request->send(), $parameters];
+        return [$request->send(), $options];
     }
 
     /**
@@ -81,9 +81,9 @@ class ReceiveRequestTest extends TestCase
      */
     public function testPaymentNoSend($results)
     {
-        list($response, $parameters) = $results;
+        list($response, $options) = $results;
 
         self::assertTrue($response->isSuccessful());
-        self::assertEquals($parameters['PaymentNo'], $response->getData()['PaymentNo']);
+        self::assertEquals($options['PaymentNo'], $response->getData()['PaymentNo']);
     }
 }
