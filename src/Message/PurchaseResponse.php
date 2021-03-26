@@ -55,7 +55,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
         $endpoint = $this->request->getEndpoint();
         $endpoint = (bool) preg_match('/^http(s)?:\/\//', $endpoint)
             ? $endpoint
-            : 'https://' . $endpoint;
+            : 'https://'.$endpoint;
         $endpoint = $this->getRequest()->getTestMode()
             ? str_replace('www.', 'test.', $endpoint)
             : $endpoint;

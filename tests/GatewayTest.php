@@ -3,6 +3,7 @@
 namespace Omnipay\Payware\Tests;
 
 use Omnipay\Payware\Gateway;
+use Omnipay\Payware\Message\AcceptNotificationRequest;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
 use Omnipay\Payware\Message\ReceiveRequest;
@@ -28,10 +29,25 @@ class GatewayTest extends GatewayTestCase
 
     public function testCompletePurchase()
     {
-        $options = ['transactionReference' => 'abc123'];
+        $options = [
+            'SendType' => 2,
+            'transactionReference' => 'abc123',
+        ];
         $request = $this->gateway->completePurchase($options);
 
         self::assertInstanceOf(CompletePurchaseRequest::class, $request);
+        self::assertArrayHasKey('BookingId', $request->getData());
+    }
+
+    public function testAccessNotification()
+    {
+        $options = [
+            'SendType' => 1,
+            'transactionReference' => 'abc123',
+        ];
+        $request = $this->gateway->completePurchase($options);
+
+        self::assertInstanceOf(AcceptNotificationRequest::class, $request);
         self::assertArrayHasKey('BookingId', $request->getData());
     }
 

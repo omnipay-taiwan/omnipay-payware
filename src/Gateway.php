@@ -5,6 +5,7 @@ namespace Omnipay\Payware;
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Common\Message\RequestInterface;
+use Omnipay\Payware\Message\AcceptNotificationRequest;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
 use Omnipay\Payware\Message\ReceiveRequest;
@@ -67,7 +68,6 @@ use Omnipay\Payware\Traits\HasMerchant;
  *     echo "Transaction reference = " . $sale_id . "\n";
  * }
  * </code>
- * @method NotificationInterface acceptNotification(array $options = [])
  * @method RequestInterface authorize(array $options = [])
  * @method RequestInterface completeAuthorize(array $options = [])
  * @method RequestInterface capture(array $options = [])
@@ -120,7 +120,18 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $options = [])
     {
-        return $this->createRequest(CompletePurchaseRequest::class, $options);
+        return ! empty($options['SendType']) && (string) $options['SendType'] === '1'
+            ? $this->acceptNotification($options)
+            : $this->createRequest(CompletePurchaseRequest::class, $options);
+    }
+
+    /**
+     * @param array $options
+     * @return RequestInterface|NotificationInterface
+     */
+    public function acceptNotification(array $options = [])
+    {
+        return $this->createRequest(AcceptNotificationRequest::class, $options);
     }
 
     /**
