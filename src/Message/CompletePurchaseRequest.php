@@ -3,11 +3,12 @@
 namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasMerchant;
 
-class CompletePurchaseRequest extends AbstractRequest
+class CompletePurchaseRequest extends AbstractRequest implements NotificationInterface
 {
     use HasMerchant;
     use HasBooking;
@@ -122,5 +123,23 @@ class CompletePurchaseRequest extends AbstractRequest
     public function sendData($data)
     {
         return $this->response = new CompletePurchaseResponse($this, $data);
+    }
+
+    public function getTransactionStatus()
+    {
+        return $this->getNotification()->getTransactionStatus();
+    }
+
+    public function getMessage()
+    {
+        return $this->getNotification()->getMessage();
+    }
+
+    /**
+     * @return NotificationInterface
+     */
+    private function getNotification()
+    {
+        return ! $this->response ? $this->send() : $this->response;
     }
 }
