@@ -13,7 +13,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return $this->valid() && $this->getCode() === '000';
+        return $this->getCode() === '000';
     }
 
     /**
@@ -54,23 +54,5 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getTransactionId()
     {
         return $this->data['CustOrderNo'];
-    }
-
-    protected function valid()
-    {
-        return hash_equals($this->request->getCheckMacValue(), $this->makeHash());
-    }
-
-    /**
-     * @return string
-     */
-    private function makeHash()
-    {
-        $keys = ['MerchantId', 'TerminalId', 'PayType', 'BookingId', 'CustOrderNo', 'Amount', 'RtnCode'];
-        $values = array_reduce($keys, function ($acc, $key) {
-            return $acc.$this->data[$key];
-        }, '');
-
-        return hash_hmac('sha1', $values, $this->request->getValidateKey());
     }
 }

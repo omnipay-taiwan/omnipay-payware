@@ -28,6 +28,7 @@ class PurchaseRequestTest extends TestCase
             'MemberId' => '',
             'DeadlineDate' => '',
             'DeadlineTime' => '',
+            'USN' => 'A123456789',
         ];
         $request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize(array_merge($options, [

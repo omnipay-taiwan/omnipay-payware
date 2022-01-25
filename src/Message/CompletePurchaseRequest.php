@@ -2,16 +2,21 @@
 
 namespace Omnipay\Payware\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Exception\InvalidRequestException;
+use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Common\Message\NotificationInterface;
 use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasBooking;
+use Omnipay\Payware\Traits\HasCreditCard;
+use Omnipay\Payware\Traits\HasCVS;
 use Omnipay\Payware\Traits\HasMerchant;
 
 class CompletePurchaseRequest extends AbstractRequest implements NotificationInterface
 {
     use HasMerchant;
     use HasBooking;
+    use HasCreditCard;
+    use HasCVS;
 
     /**
      * @param int $authAmount
@@ -82,6 +87,23 @@ class CompletePurchaseRequest extends AbstractRequest implements NotificationInt
     }
 
     /**
+     * @param $transferOutAccount
+     * @return CompletePurchaseRequest
+     */
+    public function setTransferOutAccount($transferOutAccount)
+    {
+        return $this->setParameter('TransferOutAccount', $transferOutAccount);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTransferOutAccount()
+    {
+        return $this->getParameter('TransferOutAccount');
+    }
+
+    /**
      * @param string $checkMacValue
      * @return CompletePurchaseRequest
      */
@@ -98,22 +120,29 @@ class CompletePurchaseRequest extends AbstractRequest implements NotificationInt
         return $this->getParameter('CheckMacValue');
     }
 
+    /**
+     * @throws InvalidRequestException
+     * @throws InvalidResponseException
+     */
     public function getData()
     {
-        return [
+        return $this->checkMacValue(Helper::filterEmpty([
             'MerchantId' => $this->getMerchantId(),
             'TerminalId' => $this->getTerminalId(),
             'PayType' => $this->getPayType(),
-            'Amount' => (int) $this->getAmount(),
-            'AuthAmount' => (int) $this->getAuthAmount(),
             'BookingId' => $this->getTransactionReference(),
             'CustOrderNo' => $this->getTransactionId(),
+            'Amount' => (int) $this->getAmount(),
+            'AuthAmount' => (int) $this->getAuthAmount(),
             'RtnCode' => $this->getRtnCode(),
+            'Card4no' => $this->getCard4No(),
+            'Payment_no' => $this->getPaymentNo(),
             'RtnMsg' => $this->getRtnMsg(),
             'PaymentDate' => Helper::parseDate($this->getPaymentDate()),
-            'CheckMacValue' => $this->getCheckMacValue(),
+            'TransferOutAccount' => $this->getTransferOutAccount(),
             'SendType' => $this->getSendType(),
-        ];
+            'CheckMacValue' => $this->getCheckMacValue(),
+        ]));
     }
 
     /**
@@ -141,5 +170,33 @@ class CompletePurchaseRequest extends AbstractRequest implements NotificationInt
     private function getNotification()
     {
         return ! $this->response ? $this->send() : $this->response;
+    }
+
+    /**
+     * @return array
+     * @throws InvalidResponseException
+     */
+    private function checkMacValue($data)
+    {
+        $checkMacValue = $this->getCheckMacValue();
+        if (! $checkMacValue || ! hash_equals($checkMacValue, $this->makeHash($data))) {
+            throw new InvalidResponseException();
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $data
+     * @return false|string
+     */
+    private function makeHash($data)
+    {
+        $keys = ['MerchantId', 'TerminalId', 'PayType', 'BookingId', 'CustOrderNo', 'Amount', 'RtnCode'];
+        $values = array_reduce($keys, static function ($acc, $key) use ($data) {
+            return $acc.(array_key_exists($key, $data) ? $data[$key] : '');
+        }, '');
+
+        return hash_hmac('sha1', $values, $this->getValidateKey());
     }
 }

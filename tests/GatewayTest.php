@@ -16,6 +16,7 @@ class GatewayTest extends GatewayTestCase
         parent::setUp();
 
         $this->gateway = new Gateway($this->getHttpClient(), $this->getHttpRequest());
+        $this->gateway->initialize(['ValidateKey' => 'validateKey']);
     }
 
     public function testPurchase()
@@ -30,8 +31,19 @@ class GatewayTest extends GatewayTestCase
     public function testCompletePurchase()
     {
         $options = [
-            'SendType' => 2,
-            'transactionReference' => 'abc123',
+            'MerchantId' => '1',
+            'TerminalId' => '101',
+            'PayType' => '1',
+            'BookingId' => 'PW118120600018',
+            'CustOrderNo' => '6636797108956306177',
+            'Amount' => '162',
+            'RtnCode' => '000',
+            'CheckMacValue' => '921789856e652959fdc6439cfb23068a4066902b',
+            'AuthAmount' => '162',
+            'RtnMsg' => '授權成功。',
+            'PaymentDate' => '2019/08/08',
+            'SendType' => '1',
+            'Card4no' => '1111',
         ];
         $request = $this->gateway->completePurchase($options);
 
@@ -42,8 +54,19 @@ class GatewayTest extends GatewayTestCase
     public function testAccessNotification()
     {
         $options = [
-            'SendType' => 1,
-            'transactionReference' => 'abc123',
+            'MerchantId' => '1',
+            'TerminalId' => '101',
+            'PayType' => '1',
+            'BookingId' => 'PW118120600018',
+            'CustOrderNo' => '6636797108956306177',
+            'Amount' => '162',
+            'RtnCode' => '000',
+            'CheckMacValue' => '921789856e652959fdc6439cfb23068a4066902b',
+            'AuthAmount' => '162',
+            'RtnMsg' => '授權成功。',
+            'PaymentDate' => '2019/08/08',
+            'SendType' => '1',
+            'Card4no' => '1111',
         ];
         $request = $this->gateway->completePurchase($options);
 

@@ -64,6 +64,7 @@ class ReceiveTransactionInfoRequestTest extends TestCase
             'BookingId' => 'PW420042200560',
             'CustOrderNo' => 'a82f2c7311c37f07c75aa6283fb182ce',
             'Amount' => '200',
+            'Barcode1~3' => 'barcode',
             'PaymentNo' => 'CCAT011404971656',
             'PayEndDate' => '2020-04-23',
             'SendType' => '1',

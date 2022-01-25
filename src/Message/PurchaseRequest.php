@@ -3,7 +3,6 @@
 namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
-use Omnipay\Common\Message\AbstractRequest;
 use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasMerchant;
 
@@ -207,6 +206,23 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
+     * @param string $deadlineTime
+     * @return PurchaseRequest
+     */
+    public function setUSN($deadlineTime)
+    {
+        return $this->setParameter('USN', $deadlineTime);
+    }
+
+    /**
+     * @return string
+     */
+    public function getUSN()
+    {
+        return $this->getParameter('USN');
+    }
+
+    /**
      * @return array
      * @throws InvalidRequestException
      */
@@ -233,6 +249,7 @@ class PurchaseRequest extends AbstractRequest
             'MemberId' => $this->getMemberId(),
             'DeadlineDate' => Helper::parseDate($this->getDeadlineDate(), 'Y/m/d'),
             'DeadlineTime' => Helper::parseDate($this->getDeadlineTime(), 'H:i:s'),
+            'USN' => $this->getUSN(),
         ];
     }
 
