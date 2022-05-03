@@ -6,7 +6,7 @@ use Omnipay\Common\Message\NotificationInterface;
 
 class AcceptNotificationResponse extends CompletePurchaseResponse implements NotificationInterface
 {
-    public function getMessage()
+    public function getReply()
     {
         return $this->isSuccessful() ? 'OK' : 'FAIL';
     }

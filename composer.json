@@ -40,12 +40,12 @@
         "omnipay/common": "~3.0"
     },
     "require-dev": {
-        "omnipay/tests": "~3.0",
-        "squizlabs/php_codesniffer": "~3.0"
+        "omnipay/tests": "~3.0|~4.0",
+        "squizlabs/php_codesniffer": "^3.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "3.1.x-dev"
         }
     },
     "prefer-stable": true

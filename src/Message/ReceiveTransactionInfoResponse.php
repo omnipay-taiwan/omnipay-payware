@@ -23,7 +23,7 @@ class ReceiveTransactionInfoResponse extends AbstractResponse
      */
     public function getMessage()
     {
-        return 'OK';
+        return '';
     }
 
     /**
@@ -44,5 +44,10 @@ class ReceiveTransactionInfoResponse extends AbstractResponse
     public function getTransactionId()
     {
         return $this->data['CustOrderNo'];
+    }
+
+    public function getReply()
+    {
+        return 'OK';
     }
 }

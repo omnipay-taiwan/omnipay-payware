@@ -48,11 +48,11 @@ class ReceiveTransactionInfoRequestTest extends TestCase
      */
     public function testAtmSend($results)
     {
-        list($response, $options) = $results;
+        [$response, $options] = $results;
 
         self::assertTrue($response->isSuccessful());
         self::assertEquals($options['AtmNo'], $response->getData()['AtmNo']);
-        self::assertEquals('OK', $response->getMessage());
+        self::assertEquals('OK', $response->getReply());
     }
 
     public function testPaymentNoGetData()
@@ -83,10 +83,10 @@ class ReceiveTransactionInfoRequestTest extends TestCase
      */
     public function testPaymentNoSend($results)
     {
-        list($response, $options) = $results;
+        [$response, $options] = $results;
 
         self::assertTrue($response->isSuccessful());
         self::assertEquals($options['PaymentNo'], $response->getData()['PaymentNo']);
-        self::assertEquals('OK', $response->getMessage());
+        self::assertEquals('OK', $response->getReply());
     }
 }

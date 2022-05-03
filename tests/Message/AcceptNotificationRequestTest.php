@@ -51,7 +51,8 @@ class AcceptNotificationRequestTest extends TestCase
         self::assertEquals('6636797108956306177', $notification->getTransactionId());
         self::assertEquals('PW118120600018', $notification->getTransactionReference());
         self::assertEquals(NotificationInterface::STATUS_COMPLETED, $notification->getTransactionStatus());
-        self::assertEquals('OK', $notification->getMessage());
+        self::assertEquals('授權成功。', $notification->getMessage());
+        // self::assertEquals('OK', $notification->getReply());
     }
 
     public function testInvalidCheckMacValue()
