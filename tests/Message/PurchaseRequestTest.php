@@ -42,11 +42,12 @@ class PurchaseRequestTest extends TestCase
 
     /**
      * @depends testGetData
-     * @param array $results
+     *
+     * @param  array  $results
      */
     public function testSend($results)
     {
-        list($response, $options) = $results;
+        [$response, $options] = $results;
 
         self::assertFalse($response->isSuccessful());
         self::assertTrue($response->isRedirect());

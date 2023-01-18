@@ -17,8 +17,8 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
     /**
      * Constructor.
      *
-     * @param PurchaseRequest $request the initiating request.
-     * @param mixed $data
+     * @param  PurchaseRequest  $request the initiating request.
+     * @param  mixed  $data
      */
     public function __construct(PurchaseRequest $request, $data)
     {

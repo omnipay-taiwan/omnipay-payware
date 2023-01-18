@@ -5,7 +5,7 @@ namespace Omnipay\Payware\Traits;
 trait HasCVS
 {
     /**
-     * @param string $barcode
+     * @param  string  $barcode
      * @return $this
      */
     public function setBarcode1_3($barcode)
@@ -22,7 +22,7 @@ trait HasCVS
     }
 
     /**
-     * @param string $paymentNo
+     * @param  string  $paymentNo
      * @return $this
      */
     public function setPaymentNo($paymentNo)

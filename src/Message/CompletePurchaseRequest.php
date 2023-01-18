@@ -18,7 +18,7 @@ class CompletePurchaseRequest extends AbstractRequest
     use HasCVS;
 
     /**
-     * @param int $authAmount
+     * @param  int  $authAmount
      * @return CompletePurchaseRequest
      */
     public function setAuthAmount($authAmount)
@@ -35,7 +35,7 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $rtnCode
+     * @param  string  $rtnCode
      * @return CompletePurchaseRequest
      */
     public function setRtnCode($rtnCode)
@@ -52,7 +52,7 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $rtnMsg
+     * @param  string  $rtnMsg
      * @return CompletePurchaseRequest
      */
     public function setRtnMsg($rtnMsg)
@@ -69,7 +69,7 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $paymentDate
+     * @param  string  $paymentDate
      * @return CompletePurchaseRequest
      */
     public function setPaymentDate($paymentDate)
@@ -103,7 +103,7 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $checkMacValue
+     * @param  string  $checkMacValue
      * @return CompletePurchaseRequest
      */
     public function setCheckMacValue($checkMacValue)
@@ -145,7 +145,7 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param mixed $data
+     * @param  mixed  $data
      * @return CompletePurchaseResponse
      */
     public function sendData($data)
@@ -155,6 +155,7 @@ class CompletePurchaseRequest extends AbstractRequest
 
     /**
      * @return array
+     *
      * @throws InvalidResponseException
      */
     private function checkMacValue($data)

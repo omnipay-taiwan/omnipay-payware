@@ -5,7 +5,7 @@ namespace Omnipay\Payware\Traits;
 trait HasWebATM
 {
     /**
-     * @param string $bankCode
+     * @param  string  $bankCode
      * @return $this
      */
     public function setBankCode($bankCode)
@@ -22,7 +22,7 @@ trait HasWebATM
     }
 
     /**
-     * @param string $atmNo
+     * @param  string  $atmNo
      * @return $this
      */
     public function setAtmNo($atmNo)

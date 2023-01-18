@@ -5,7 +5,7 @@ namespace Omnipay\Payware\Traits;
 trait HasBooking
 {
     /**
-     * @param string $bookingId
+     * @param  string  $bookingId
      * @return $this
      */
     public function setBookingId($bookingId)
@@ -22,7 +22,7 @@ trait HasBooking
     }
 
     /**
-     * @param string $custOrderNo
+     * @param  string  $custOrderNo
      * @return $this
      */
     public function setCustOrderNo($custOrderNo)
@@ -39,7 +39,7 @@ trait HasBooking
     }
 
     /**
-     * @param string $sendType
+     * @param  string  $sendType
      * @return $this
      */
     public function setSendType($sendType)

@@ -11,7 +11,7 @@ class PurchaseRequest extends AbstractRequest
     use HasMerchant;
 
     /**
-     * @param string $orderNo
+     * @param  string  $orderNo
      * @return PurchaseRequest
      */
     public function setOrderNo($orderNo)
@@ -28,7 +28,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $receiveUrl
+     * @param  string  $receiveUrl
      * @return PurchaseRequest
      */
     public function setReceiveUrl($receiveUrl)
@@ -45,7 +45,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $orderDesc
+     * @param  string  $orderDesc
      * @return PurchaseRequest
      */
     public function setOrderDesc($orderDesc)
@@ -62,7 +62,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $cardHolder
+     * @param  string  $cardHolder
      * @return PurchaseRequest
      */
     public function setCardHolder($cardHolder)
@@ -79,7 +79,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $mobile
+     * @param  string  $mobile
      * @return PurchaseRequest
      */
     public function setMobile($mobile)
@@ -96,7 +96,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $telNumber
+     * @param  string  $telNumber
      * @return PurchaseRequest
      */
     public function setTelNumber($telNumber)
@@ -113,7 +113,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $email
+     * @param  string  $email
      * @return PurchaseRequest
      */
     public function setEmail($email)
@@ -130,7 +130,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $address
+     * @param  string  $address
      * @return PurchaseRequest
      */
     public function setAddress($address)
@@ -147,7 +147,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $memberId
+     * @param  string  $memberId
      * @return PurchaseRequest
      */
     public function setMemberId($memberId)
@@ -170,7 +170,7 @@ class PurchaseRequest extends AbstractRequest
      * Ibon、Famiport目前最大值為7天
      * ※僅限付款方式為2.3.4.6。
      *
-     * @param string $deadlineDate
+     * @param  string  $deadlineDate
      * @return PurchaseRequest
      */
     public function setDeadlineDate($deadlineDate)
@@ -189,7 +189,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $deadlineTime
+     * @param  string  $deadlineTime
      * @return PurchaseRequest
      */
     public function setDeadlineTime($deadlineTime)
@@ -206,7 +206,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param string $deadlineTime
+     * @param  string  $deadlineTime
      * @return PurchaseRequest
      */
     public function setUSN($deadlineTime)
@@ -224,6 +224,7 @@ class PurchaseRequest extends AbstractRequest
 
     /**
      * @return array
+     *
      * @throws InvalidRequestException
      */
     public function getData()
@@ -254,7 +255,7 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param array $data
+     * @param  array  $data
      * @return PurchaseResponse
      */
     public function sendData($data)

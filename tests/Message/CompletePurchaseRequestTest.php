@@ -41,11 +41,12 @@ class CompletePurchaseRequestTest extends TestCase
 
     /**
      * @depends testGetData
-     * @param array $options
+     *
+     * @param  array  $options
      */
     public function testSend($options)
     {
-        list($response) = $options;
+        [$response] = $options;
 
         self::assertTrue($response->isSuccessful());
         self::assertEquals('000', $response->getCode());

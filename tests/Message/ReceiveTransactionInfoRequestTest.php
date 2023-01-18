@@ -44,7 +44,8 @@ class ReceiveTransactionInfoRequestTest extends TestCase
 
     /**
      * @depends testAtmNoGetData
-     * @param array $results
+     *
+     * @param  array  $results
      */
     public function testAtmSend($results)
     {
@@ -79,7 +80,8 @@ class ReceiveTransactionInfoRequestTest extends TestCase
 
     /**
      * @depends testPaymentNoGetData
-     * @param array $results
+     *
+     * @param  array  $results
      */
     public function testPaymentNoSend($results)
     {

@@ -18,7 +18,7 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
     use HasCVS;
 
     /**
-     * @param string $payEndDate
+     * @param  string  $payEndDate
      * @return ReceiveTransactionInfoRequest
      */
     public function setPayEndDate($payEndDate)
@@ -36,6 +36,7 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
 
     /**
      * @return array
+     *
      * @throws InvalidRequestException
      */
     public function getData()
@@ -57,7 +58,7 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
     }
 
     /**
-     * @param mixed $data
+     * @param  mixed  $data
      * @return ResponseInterface
      */
     public function sendData($data)

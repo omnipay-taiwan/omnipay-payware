@@ -42,7 +42,8 @@ class AcceptNotificationRequestTest extends TestCase
 
     /**
      * @depends testGetData
-     * @param array $result
+     *
+     * @param  array  $result
      */
     public function testSend($result)
     {

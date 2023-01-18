@@ -5,7 +5,7 @@ namespace Omnipay\Payware\Traits;
 trait HasCreditCard
 {
     /**
-     * @param string $card4No
+     * @param  string  $card4No
      * @return $this
      */
     public function setCard4No($card4No)

@@ -5,8 +5,8 @@ namespace Omnipay\Payware\Support;
 class Helper
 {
     /**
-     * @param string $date
-     * @param string $format
+     * @param  string  $date
+     * @param  string  $format
      * @return string
      */
     public static function parseDate($date, $format = null)
