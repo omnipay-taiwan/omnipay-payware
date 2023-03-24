@@ -5,6 +5,7 @@ namespace Omnipay\Payware\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Message\ResponseInterface;
 use Omnipay\Payware\Support\Helper;
+use Omnipay\Payware\Traits\HasAmount;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasCVS;
 use Omnipay\Payware\Traits\HasMerchant;
@@ -16,6 +17,7 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
     use HasBooking;
     use HasWebATM;
     use HasCVS;
+    use HasAmount;
 
     /**
      * @param  string  $payEndDate
@@ -45,7 +47,7 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
             'MerchantId' => $this->getMerchantId(),
             'TerminalId' => $this->getTerminalId(),
             'PayType' => $this->getPayType(),
-            'Amount' => (int) $this->getAmount(),
+            'Amount' => $this->getAmount(),
             'BookingId' => $this->getBookingId(),
             'CustOrderNo' => $this->getTransactionId(),
             'SendType' => $this->getSendType(),

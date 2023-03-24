@@ -7,7 +7,6 @@ use Omnipay\Payware\Message\PurchaseRequest;
 trait HasMerchant
 {
     /**
-     * @param $endpoint
      * @return $this
      */
     public function setEndpoint($endpoint)

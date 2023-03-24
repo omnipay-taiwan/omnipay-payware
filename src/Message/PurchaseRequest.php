@@ -4,11 +4,13 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Payware\Support\Helper;
+use Omnipay\Payware\Traits\HasAmount;
 use Omnipay\Payware\Traits\HasMerchant;
 
 class PurchaseRequest extends AbstractRequest
 {
     use HasMerchant;
+    use HasAmount;
 
     /**
      * @param  string  $orderNo
@@ -235,7 +237,7 @@ class PurchaseRequest extends AbstractRequest
             'MerchantId' => $this->getMerchantId(),
             'TerminalId' => $this->getTerminalId(),
             'MerchantName' => $this->getMerchantName(),
-            'Amount' => (int) $this->getAmount(),
+            'Amount' => $this->getAmount(),
             'OrderNo' => $this->getTransactionId(),
             'ReturnURL' => $this->getReturnUrl(),
             'ReceiveURL' => $this->getReceiveUrl(),

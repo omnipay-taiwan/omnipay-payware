@@ -9,3 +9,4 @@ dirlist.cache
 dirlist.vendor
 
 .php-cs-fixer.cache
+.phpunit.result.cache

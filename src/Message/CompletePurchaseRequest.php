@@ -5,6 +5,7 @@ namespace Omnipay\Payware\Message;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Payware\Support\Helper;
+use Omnipay\Payware\Traits\HasAmount;
 use Omnipay\Payware\Traits\HasBooking;
 use Omnipay\Payware\Traits\HasCreditCard;
 use Omnipay\Payware\Traits\HasCVS;
@@ -16,6 +17,7 @@ class CompletePurchaseRequest extends AbstractRequest
     use HasBooking;
     use HasCreditCard;
     use HasCVS;
+    use HasAmount;
 
     /**
      * @param  int  $authAmount
@@ -86,7 +88,6 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param $transferOutAccount
      * @return CompletePurchaseRequest
      */
     public function setTransferOutAccount($transferOutAccount)
@@ -131,8 +132,8 @@ class CompletePurchaseRequest extends AbstractRequest
             'PayType' => $this->getPayType(),
             'BookingId' => $this->getTransactionReference(),
             'CustOrderNo' => $this->getTransactionId(),
-            'Amount' => (int) $this->getAmount(),
-            'AuthAmount' => (int) $this->getAuthAmount(),
+            'Amount' => $this->getAmount(),
+            'AuthAmount' => $this->getAuthAmount(),
             'RtnCode' => $this->getRtnCode(),
             'Card4no' => $this->getCard4No(),
             'Payment_no' => $this->getPaymentNo(),
@@ -169,7 +170,6 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param $data
      * @return false|string
      */
     private function makeHash($data)
