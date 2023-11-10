@@ -1,6 +1,6 @@
 # Omnipay: Payware
 
-**Skeleton gateway for the Omnipay PHP payment processing library**
+**Payware gateway for the Omnipay PHP payment processing library**
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/omnipay-taiwan/omnipay-payware.svg?style=flat-square)](https://packagist.org/packages/omnipay-taiwan/omnipay-payware)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
