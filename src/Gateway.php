@@ -119,7 +119,9 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $options = [])
     {
-        return ! empty($options['SendType']) && (string) $options['SendType'] === '1'
+        $sendType = $this->httpRequest->request->get('SendType');
+
+        return $sendType === '1'
             ? $this->acceptNotification($options)
             : $this->createRequest(CompletePurchaseRequest::class, $options);
     }

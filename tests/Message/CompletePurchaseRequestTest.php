@@ -10,7 +10,7 @@ class CompletePurchaseRequestTest extends TestCase
 {
     public function testGetData()
     {
-        $options = [
+        $data = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -27,14 +27,11 @@ class CompletePurchaseRequestTest extends TestCase
             'Payment_no' => '2222',
             'TransferOutAccount' => 'foo_account',
         ];
+        $this->getHttpRequest()->request->add($data);
         $request = new CompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($options, [
-            'ValidateKey' => 'validateKey',
-        ]));
+        $request->initialize(['ValidateKey' => 'validateKey']);
 
-        self::assertEquals(array_merge($options, [
-            'PaymentDate' => '2019-08-08',
-        ]), $request->getData());
+        self::assertEquals(array_merge($data, ['PaymentDate' => '2019/08/08']), $request->getData());
 
         return [$request->send()];
     }
@@ -60,7 +57,7 @@ class CompletePurchaseRequestTest extends TestCase
         $this->expectException(InvalidResponseException::class);
         $this->expectExceptionMessage('Invalid response from payment gateway');
 
-        $options = [
+        $data = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -77,13 +74,10 @@ class CompletePurchaseRequestTest extends TestCase
             'Payment_no' => '2222',
             'TransferOutAccount' => 'foo_account',
         ];
+        $this->getHttpRequest()->request->add($data);
         $request = new CompletePurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($options, [
-            'ValidateKey' => 'validateKey',
-        ]));
+        $request->initialize(['ValidateKey' => 'validateKey']);
 
-        self::assertEquals(array_merge($options, [
-            'PaymentDate' => '2019-08-08',
-        ]), $request->getData());
+        self::assertEquals(array_merge($data, ['PaymentDate' => '2019-08-08']), $request->getData());
     }
 }

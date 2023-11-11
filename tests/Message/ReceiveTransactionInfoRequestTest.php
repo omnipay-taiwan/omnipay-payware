@@ -20,7 +20,7 @@ class ReceiveTransactionInfoRequestTest extends TestCase
          * 'PayEndDate' => '2020-04-23',
          * 'SendType' => '1',.
          */
-        $options = [
+        $data = [
             'MerchantId' => 'test001',
             'TerminalId' => 'test001001',
             'PayType' => '2',
@@ -32,14 +32,13 @@ class ReceiveTransactionInfoRequestTest extends TestCase
             'AtmNo' => '2592600213085401',
             'PayEndDate' => '2020/02/13 23:59:59',
         ];
+        $this->getHttpRequest()->request->add($data);
         $request = new ReceiveTransactionInfoRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize($options);
+        $request->initialize();
 
-        self::assertEquals(array_merge($options, [
-            'PayEndDate' => '2020-02-13 23:59:59',
-        ]), $request->getData());
+        self::assertEquals(array_merge($data, ['PayEndDate' => '2020/02/13 23:59:59']), $request->getData());
 
-        return [$request->send(), $options];
+        return [$request->send(), $data];
     }
 
     /**
@@ -58,7 +57,7 @@ class ReceiveTransactionInfoRequestTest extends TestCase
 
     public function testPaymentNoGetData()
     {
-        $options = [
+        $data = [
             'MerchantId' => 'test001',
             'TerminalId' => 'test001001',
             'PayType' => '4',
@@ -70,12 +69,13 @@ class ReceiveTransactionInfoRequestTest extends TestCase
             'PayEndDate' => '2020-04-23',
             'SendType' => '1',
         ];
+        $this->getHttpRequest()->request->add($data);
         $request = new ReceiveTransactionInfoRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize($options);
+        $request->initialize();
 
-        self::assertEquals($options, $request->getData());
+        self::assertEquals($data, $request->getData());
 
-        return [$request->send(), $options];
+        return [$request->send(), $data];
     }
 
     /**

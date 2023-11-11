@@ -30,7 +30,7 @@ class GatewayTest extends GatewayTestCase
 
     public function testCompletePurchase()
     {
-        $options = [
+        $data = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -45,7 +45,8 @@ class GatewayTest extends GatewayTestCase
             'SendType' => '1',
             'Card4no' => '1111',
         ];
-        $request = $this->gateway->completePurchase($options);
+        $this->getHttpRequest()->request->add($data);
+        $request = $this->gateway->completePurchase();
 
         self::assertInstanceOf(CompletePurchaseRequest::class, $request);
         self::assertArrayHasKey('BookingId', $request->getData());
@@ -53,7 +54,7 @@ class GatewayTest extends GatewayTestCase
 
     public function testAccessNotification()
     {
-        $options = [
+        $data = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -68,7 +69,8 @@ class GatewayTest extends GatewayTestCase
             'SendType' => '1',
             'Card4no' => '1111',
         ];
-        $request = $this->gateway->completePurchase($options);
+        $this->getHttpRequest()->request->add($data);
+        $request = $this->gateway->completePurchase();
 
         self::assertInstanceOf(AcceptNotificationRequest::class, $request);
         self::assertArrayHasKey('BookingId', $request->getData());

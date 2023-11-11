@@ -11,7 +11,7 @@ class AcceptNotificationRequestTest extends TestCase
 {
     public function testGetData()
     {
-        $options = [
+        $data = [
             'MerchantId' => '1',
             'TerminalId' => '101',
             'PayType' => '1',
@@ -28,14 +28,11 @@ class AcceptNotificationRequestTest extends TestCase
             'Payment_no' => '2222',
             'TransferOutAccount' => 'foo_account',
         ];
+        $this->getHttpRequest()->request->add($data);
         $request = new AcceptNotificationRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($options, [
-            'ValidateKey' => 'validateKey',
-        ]));
+        $request->initialize(['ValidateKey' => 'validateKey']);
 
-        self::assertEquals(array_merge($options, [
-            'PaymentDate' => '2019-08-08',
-        ]), $request->getData());
+        self::assertEquals(array_merge($data, ['PaymentDate' => '2019/08/08']), $request->getData());
 
         return [$request];
     }
@@ -78,10 +75,9 @@ class AcceptNotificationRequestTest extends TestCase
             'Payment_no' => '2222',
             'TransferOutAccount' => 'foo_account',
         ];
+        $this->getHttpRequest()->request->add($options);
         $request = new AcceptNotificationRequest($this->getHttpClient(), $this->getHttpRequest());
-        $request->initialize(array_merge($options, [
-            'ValidateKey' => 'validateKey',
-        ]));
+        $request->initialize(['ValidateKey' => 'validateKey']);
 
         self::assertEquals(array_merge($options, [
             'PaymentDate' => '2019-08-08',
