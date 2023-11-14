@@ -6,7 +6,7 @@ trait HasWebATM
 {
     /**
      * @param  string  $bankCode
-     * @return $this
+     * @return self
      */
     public function setBankCode($bankCode)
     {
@@ -23,7 +23,7 @@ trait HasWebATM
 
     /**
      * @param  string  $atmNo
-     * @return $this
+     * @return self
      */
     public function setAtmNo($atmNo)
     {

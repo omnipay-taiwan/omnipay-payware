@@ -6,7 +6,7 @@ trait HasBooking
 {
     /**
      * @param  string  $bookingId
-     * @return $this
+     * @return self
      */
     public function setBookingId($bookingId)
     {
@@ -23,7 +23,7 @@ trait HasBooking
 
     /**
      * @param  string  $custOrderNo
-     * @return $this
+     * @return self
      */
     public function setCustOrderNo($custOrderNo)
     {
@@ -40,7 +40,7 @@ trait HasBooking
 
     /**
      * @param  string  $sendType
-     * @return $this
+     * @return self
      */
     public function setSendType($sendType)
     {

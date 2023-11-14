@@ -4,7 +4,7 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 
-class ReceiveTransactionInfoResponse extends AbstractResponse
+class GetPaymentInfoResponse extends AbstractResponse
 {
     /**
      * Is the response successful?

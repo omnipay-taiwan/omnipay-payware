@@ -4,7 +4,7 @@ namespace Omnipay\Payware\Message;
 
 use Omnipay\Common\Message\ResponseInterface;
 
-class ReceiveTransactionInfoRequest extends AbstractRequest
+class GetPaymentInfoRequest extends AbstractRequest
 {
     /**
      * @return array
@@ -20,6 +20,6 @@ class ReceiveTransactionInfoRequest extends AbstractRequest
      */
     public function sendData($data)
     {
-        return $this->response = new ReceiveTransactionInfoResponse($this, $data);
+        return $this->response = new GetPaymentInfoResponse($this, $data);
     }
 }

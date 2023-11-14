@@ -6,11 +6,13 @@ use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Payware\Support\Helper;
 use Omnipay\Payware\Traits\HasAmount;
 use Omnipay\Payware\Traits\HasMerchant;
+use Omnipay\Payware\Traits\HasPaymentInfo;
 
 class PurchaseRequest extends AbstractRequest
 {
     use HasMerchant;
     use HasAmount;
+    use HasPaymentInfo;
 
     /**
      * @param  string  $orderNo
@@ -30,12 +32,12 @@ class PurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @param  string  $receiveUrl
+     * @param  string  $value
      * @return PurchaseRequest
      */
-    public function setReceiveUrl($receiveUrl)
+    public function setReceiveUrl($value)
     {
-        return $this->setParameter('ReceiveUrl', $receiveUrl);
+        return $this->setPaymentInfoUrl($value);
     }
 
     /**
@@ -43,7 +45,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getReceiveUrl()
     {
-        return $this->getParameter('ReceiveUrl');
+        return $this->getPaymentInfoUrl();
     }
 
     /**
@@ -240,7 +242,7 @@ class PurchaseRequest extends AbstractRequest
             'Amount' => $this->getAmount(),
             'OrderNo' => $this->getTransactionId(),
             'ReturnURL' => $this->getReturnUrl(),
-            'ReceiveURL' => $this->getReceiveUrl(),
+            'ReceiveURL' => $this->getPaymentInfoUrl(),
             'OrderDesc' => $this->getDescription(),
             'PayType' => $this->getPayType() ?: 1,
             'ValidateKey' => $this->getValidateKey(),

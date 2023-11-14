@@ -6,7 +6,7 @@ trait HasCVS
 {
     /**
      * @param  string  $barcode
-     * @return $this
+     * @return self
      */
     public function setBarcode1_3($barcode)
     {
@@ -23,7 +23,7 @@ trait HasCVS
 
     /**
      * @param  string  $paymentNo
-     * @return $this
+     * @return self
      */
     public function setPaymentNo($paymentNo)
     {

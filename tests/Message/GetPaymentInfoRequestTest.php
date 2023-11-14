@@ -2,10 +2,10 @@
 
 namespace Omnipay\Payware\Tests\Message;
 
-use Omnipay\Payware\Message\ReceiveTransactionInfoRequest;
+use Omnipay\Payware\Message\GetPaymentInfoRequest;
 use Omnipay\Tests\TestCase;
 
-class ReceiveTransactionInfoRequestTest extends TestCase
+class GetPaymentInfoRequestTest extends TestCase
 {
     public function testAtmNoGetData()
     {
@@ -33,7 +33,7 @@ class ReceiveTransactionInfoRequestTest extends TestCase
             'PayEndDate' => '2020/02/13 23:59:59',
         ];
         $this->getHttpRequest()->request->add($data);
-        $request = new ReceiveTransactionInfoRequest($this->getHttpClient(), $this->getHttpRequest());
+        $request = new GetPaymentInfoRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize();
 
         self::assertEquals(array_merge($data, ['PayEndDate' => '2020/02/13 23:59:59']), $request->getData());
@@ -70,7 +70,7 @@ class ReceiveTransactionInfoRequestTest extends TestCase
             'SendType' => '1',
         ];
         $this->getHttpRequest()->request->add($data);
-        $request = new ReceiveTransactionInfoRequest($this->getHttpClient(), $this->getHttpRequest());
+        $request = new GetPaymentInfoRequest($this->getHttpClient(), $this->getHttpRequest());
         $request->initialize();
 
         self::assertEquals($data, $request->getData());

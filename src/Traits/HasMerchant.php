@@ -7,7 +7,7 @@ use Omnipay\Payware\Message\PurchaseRequest;
 trait HasMerchant
 {
     /**
-     * @return $this
+     * @return self
      */
     public function setEndpoint($endpoint)
     {
@@ -24,7 +24,7 @@ trait HasMerchant
 
     /**
      * @param  string  $merchantId
-     * @return $this
+     * @return self
      */
     public function setMerchantId($merchantId)
     {
@@ -41,7 +41,7 @@ trait HasMerchant
 
     /**
      * @param  string  $terminalId
-     * @return $this
+     * @return self
      */
     public function setTerminalId($terminalId)
     {
@@ -58,7 +58,7 @@ trait HasMerchant
 
     /**
      * @param  string  $merchantName
-     * @return $this
+     * @return self
      */
     public function setMerchantName($merchantName)
     {

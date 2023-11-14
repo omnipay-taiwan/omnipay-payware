@@ -6,7 +6,7 @@ trait HasCreditCard
 {
     /**
      * @param  string  $card4No
-     * @return $this
+     * @return self
      */
     public function setCard4No($card4No)
     {

@@ -6,7 +6,7 @@ use Omnipay\Payware\Gateway;
 use Omnipay\Payware\Message\AcceptNotificationRequest;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Payware\Message\PurchaseRequest;
-use Omnipay\Payware\Message\ReceiveTransactionInfoRequest;
+use Omnipay\Payware\Message\GetPaymentInfoRequest;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
@@ -76,11 +76,11 @@ class GatewayTest extends GatewayTestCase
         self::assertArrayHasKey('BookingId', $request->getData());
     }
 
-    public function testReceiveTransactionInfo()
+    public function testGetPaymentInfo()
     {
         $options = [];
-        $request = $this->gateway->receiveTransactionInfo($options);
+        $request = $this->gateway->getPaymentInfo($options);
 
-        self::assertInstanceOf(ReceiveTransactionInfoRequest::class, $request);
+        self::assertInstanceOf(GetPaymentInfoRequest::class, $request);
     }
 }
