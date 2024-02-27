@@ -5,8 +5,8 @@ namespace Omnipay\Payware\Tests;
 use Omnipay\Payware\Gateway;
 use Omnipay\Payware\Message\AcceptNotificationRequest;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
-use Omnipay\Payware\Message\PurchaseRequest;
 use Omnipay\Payware\Message\GetPaymentInfoRequest;
+use Omnipay\Payware\Message\PurchaseRequest;
 use Omnipay\Tests\GatewayTestCase;
 
 class GatewayTest extends GatewayTestCase
