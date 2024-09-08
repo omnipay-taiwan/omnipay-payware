@@ -50,7 +50,7 @@ class GetPaymentInfoRequestTest extends TestCase
     {
         [$response, $options] = $results;
 
-        self::assertTrue($response->isSuccessful());
+        self::assertFalse($response->isSuccessful());
         self::assertEquals($options['AtmNo'], $response->getData()['AtmNo']);
         self::assertEquals('OK', $response->getReply());
     }
@@ -87,7 +87,7 @@ class GetPaymentInfoRequestTest extends TestCase
     {
         [$response, $options] = $results;
 
-        self::assertTrue($response->isSuccessful());
+        self::assertFalse($response->isSuccessful());
         self::assertEquals($options['PaymentNo'], $response->getData()['PaymentNo']);
         self::assertEquals('OK', $response->getReply());
     }

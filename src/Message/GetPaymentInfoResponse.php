@@ -13,7 +13,7 @@ class GetPaymentInfoResponse extends AbstractResponse
      */
     public function isSuccessful()
     {
-        return true;
+        return false;
     }
 
     /**
