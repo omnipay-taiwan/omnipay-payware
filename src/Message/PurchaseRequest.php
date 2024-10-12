@@ -244,7 +244,7 @@ class PurchaseRequest extends AbstractRequest
             'ReturnURL' => $this->getReturnUrl(),
             'ReceiveURL' => $this->getPaymentInfoUrl(),
             'OrderDesc' => $this->getDescription(),
-            'PayType' => $this->getPayType() ?: 1,
+            'PayType' => $this->getPaymentMethod() ?: 1,
             'ValidateKey' => $this->getValidateKey(),
             'CardHolder' => $this->getCardHolder(),
             'Mobile' => $this->getMobile(),

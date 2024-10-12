@@ -98,7 +98,7 @@ trait HasMerchant
      */
     public function setPayType($payType)
     {
-        return $this->setParameter('PayType', $payType);
+        return $this->setPaymentMethod($payType);
     }
 
     /**
@@ -106,6 +106,6 @@ trait HasMerchant
      */
     public function getPayType()
     {
-        return $this->getParameter('PayType');
+        return $this->getPaymentMethod();
     }
 }
