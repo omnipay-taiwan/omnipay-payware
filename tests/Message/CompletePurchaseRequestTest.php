@@ -2,7 +2,7 @@
 
 namespace Omnipay\Payware\Tests\Message;
 
-use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Payware\Message\CompletePurchaseRequest;
 use Omnipay\Tests\TestCase;
 
@@ -54,8 +54,8 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testInvalidCheckMacValue()
     {
-        $this->expectException(InvalidResponseException::class);
-        $this->expectExceptionMessage('Invalid response from payment gateway');
+        $this->expectException(InvalidRequestException::class);
+        $this->expectExceptionMessage('Incorrect CheckMacValue');
 
         $data = [
             'MerchantId' => '1',

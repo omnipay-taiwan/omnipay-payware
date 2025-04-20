@@ -2,6 +2,7 @@
 
 namespace Omnipay\Payware\Message;
 
+use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Common\Exception\InvalidResponseException;
 use Omnipay\Payware\Traits\HasMerchant;
 
@@ -29,12 +30,12 @@ class CompletePurchaseRequest extends AbstractRequest
     /**
      * @return array
      *
-     * @throws InvalidResponseException
+     * @throws InvalidRequestException
      */
     private function checkMacValue($data)
     {
-        if (! hash_equals($this->httpRequest->request->get('CheckMacValue', ''), $this->makeHash($data))) {
-            throw new InvalidResponseException();
+        if (! hash_equals($this->makeHash($data), $this->httpRequest->request->get('CheckMacValue', ''))) {
+            throw new InvalidRequestException('Incorrect CheckMacValue');
         }
 
         return $data;
